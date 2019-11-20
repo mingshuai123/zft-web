@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/flexible.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://res.zhifutongzhushou.com/css/loaders.css">
+	<link rel="apple-touch-icon" href="favicon.ico">
+	<!-- <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon"> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+	<link rel="stylesheet" href="https://res.zhifutongzhushou.com/css/style.css?v=201911071820">
+	<title>支付通助手</title>
+</head>
+
+<body>
+	<div id="app">
+		<div class="uploadPage">
+			<div class="title" v-if="channel!='unionpay'">收款账号<span>({{typeCN[channel]}})</span></div>
+			<div class="inputtext" v-if="channel!='unionpay'">
+				<input v-model="name" placeholder="请输入微信昵称" />
+			</div>
+			<div v-if="channel=='alipay'">
+				<div class="inputtext">
+					<input v-model="uid" placeholder="请输入支付宝UID" />
+				</div>
+				<p class="memo" @click="showqrcode">如何获取支付宝UID？</p>
+			</div>
+			<div class="imgupload">
+				<span v-if="!imgshow">+</span>
+				<img :src="img" alt="" v-if="imgshow">
+				<form name="photo" ref="form" id="imageUploadForm" enctype="multipart/form-data"
+					action="https://www.zhifutongzhushou.com/api/asset/qrcode/upload" method="post">
+					<input type="file" id="ImageBrowse" name="file" size="30" @change="submit" />
+					<!-- <input type="submit" name="upload" value="Upload" /> -->
+				</form>
+			</div>
+			<div class="desc">上传您的二维码</div>
+			<div class="btn" @click="build">建立</div>
+		</div>
+		<van-dialog v-model="show" title="获取支付宝UID" class="popup">
+			<div class="memo">请用支付宝扫描下面二维码，即可获取您的支付宝UID。</div>
+			<img src="https://res.zhifutongzhushou.com/image/alipayUID.jpg" />
+		</van-dialog>
+	</div>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/xback.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			data() {
+				return {
+					name: '',
+					uid: '',
+					token: null,
+					show: false,
+					imgshow: false,
+					fileList: [],
+					img: '',
+					dataimg: '',
+					channel: 'wx',
+					typeCN: { wx: '请填入对应微信正确的微信昵称,包括特殊字符', alipay: '为确保支付成功,请填入支付宝实名的第一个字。' }
+				}
+			},
+			created() {
+				this.getToken();
+				XBack.listen(function () {
+					alert('back');
+				});
+			},
+			methods: {
+				showqrcode() {
+					this.show = true;
+				},
+				build() {
+					var _this = this;
+					var postData = {
+						bankName: null,
+						accountNo: null,
+						realname: null,
+						bankAddr: null,
+						qrcode: _this.dataimg,
+						channel: this.channel,
+					}
+					if (this.channel == 'wx') {
+						postData.accountNo = _this.name;
+					} else if (this.channel == 'alipay') {
+						postData.accountNo = _this.uid;
+						postData.realname = _this.name;
+					}
+
+					var url = 'https://www.zhifutongzhushou.com/api/asset/payee/account/add'
+					$.ajax({
+						url: url,
+						type: 'POST',
+						dataType: 'json',
+						data: JSON.stringify(postData),
+						cache: false,
+						headers: {
+							'Authorization': _this.token,
+							'Content-Type': 'application/json' //application/x-www-form-urlencoded   multipart/form-data  application/json
+						},
+						success: function (res) {
+							if (res.code == 0) {
+								vant.Toast({
+									duration: 2000,
+									message: '建立成功',
+									type: 'success',
+
+								})
+							} else {
+								vant.Toast({
+									duration: 2000,
+									message: res.message,
+									type: 'success',
+								})
+							}
+
+						},
+						error: function (e) {
+
+						}
+					})
+				},
+				submit() {
+					this.afterRead(this.$refs.form);
+				},
+				afterRead(e) {
+					var _this = this;
+					// $('#imageUploadForm').on('submit', (function(e) {
+					// e.preventDefault();
+					console.log(e)
+					var formData = new FormData(e);
+
+					$.ajax({
+						type: 'POST',
+						url: $(e).attr('action'),
+						data: formData,
+						cache: false,
+						headers: {
+							'Authorization': _this.token
+						},
+						contentType: false,
+						processData: false,
+						success: function (data) {
+							if (data.code == 0) {
+								let str = 'https://res.zhifutongzhushou.com'
+								_this.imgshow = true;
+								_this.img = str + data.data;
+								_this.dataimg = data.data;
+							} else {
+								vant.Toast({
+									duration: 2000,
+									message: data.message,
+									type: 'fail',
+								})
+							}
+
+						},
+						error: function (data) {
+							console.log("error");
+							console.log(data);
+						}
+					});
+					// }));
+				},
+				getToken() {
+					var url = location.search;
+					var theRequest = new Object();
+					if (url.indexOf("?") != -1) {
+						var str = url.substr(1);
+						strs = str.split("&");
+						for (var i = 0; i < strs.length; i++) {
+							theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+						}
+					}
+					this.token = theRequest.token
+					this.channel = theRequest.type ? theRequest.type : 'wx';
+				}
+			}
+		})
+	</script>
+
+</body>
+
+</html>

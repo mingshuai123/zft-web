@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="yes" name="apple-touch-fullscreen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+  <script type="text/javascript" src="https://res.zhifutongzhushou.com/js/flexible.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://res.zhifutongzhushou.com/css/loaders.css">
+  <link rel="apple-touch-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+  <link rel="stylesheet" href="https://res.zhifutongzhushou.com/css/style.css?v=201911011220">
+  <title>支付通助手</title>
+</head>
+
+<body>
+  <div id="app" class="chargePage">
+    <div class="title">生成订单</div>
+    <van-cell-group>
+      <van-field v-model="amount" placeholder="请输入数额" label="订单数额" type='number' />
+    </van-cell-group>
+    <van-radio-group v-model="pay">
+      <van-cell-group>
+        <van-cell clickable @click="pay = 'wx'">
+          <div slot="title" class="item">
+            <img src="https://res.zhifutongzhushou.com/image/logo_wechat.png" alt="">
+            <span>微信</span>
+          </div>
+          <van-radio slot="right-icon" name="wx">
+          </van-radio>
+
+        </van-cell>
+        <van-cell clickable @click="pay = 'alipay'">
+          <div slot="title" class="item">
+            <img src="https://res.zhifutongzhushou.com/image/logo_pay.png" alt="">
+            <span>支付宝</span>
+          </div>
+          <van-radio slot="right-icon" name="alipay" />
+        </van-cell>
+        <van-cell clickable @click="pay = 'bank'">
+            <div slot="title" class="item">
+                <img src="https://res.zhifutongzhushou.com/image/logo_bank.png" alt="">
+                <span>银行卡</span>
+              </div>
+          <van-radio slot="right-icon" name="bank" />
+        </van-cell>
+        <van-cell clickable @click="pay = 'unionpay'">
+            <div slot="title" class="item">
+                <img src="https://res.zhifutongzhushou.com/image/logo_unionpay.jpg" alt="">
+                <span>云支付</span>
+              </div>
+          <van-radio slot="right-icon" name="unionpay" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+    <div class="btn" @click="charge">
+      <van-button type="info">信息按钮</van-button>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://res.zhifutongzhushou.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/vue.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/vant.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          token: null,
+          amount: null,
+          pay: 'wx',
+        }
+      },
+      created() {
+      },
+      methods: {
+        charge() {
+          if(this.amount<=0){
+            vant.Toast({
+                  duration: 2000,
+                  message: '请输入正确的数额',
+                  type: 'fail',
+                })
+            return false;
+          }
+          var _this = this;
+          var postData = {
+            pay: _this.pay,
+            amount: _this.amount
+          }
+          $.ajax({
+            url: 'https://www.zhifutongzhushou.com/api/order/add',
+            type: 'GET',
+            // dataType: 'json',
+            data: postData,
+            cache: false,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded' //application/x-www-form-urlencoded   multipart/form-data  application/json
+            },
+            success: function (res) {
+              if (res.code == 0) {
+                vant.Toast({
+                  duration: 2000,
+                  message: '成功生成订单！',
+                  type: 'success',
+                  onClose: function () {
+                    console.log(res.data)
+                    location.href = 'payment.html?type=' + _this.pay + '&cpId=' + res.data.cpId + '&orderId=' + res.data.orderId + '&cpOrderId=' + res.data.cpOrderId;
+                  }
+
+                })
+              } else {
+
+              }
+
+            },
+            error: function (e) {
+
+            }
+          })
+        },
+      }
+    })
+  </script>
+
+</body>
+
+</html>

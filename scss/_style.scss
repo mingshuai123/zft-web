@@ -1,0 +1,243 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#app {
+    width: rem(750px);
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    font-size: rem(28px);
+    .header {
+        background-color: #3d84f6;
+        padding: 0 rem(20px);
+        height: rem(80px);
+        line-height: rem(80px);
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        .icon {
+            background-image: url('../image/back.png');
+            width: rem(22px);
+            height: rem(40px);
+            background-size: rem(22px) rem(40px);
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: rem(10px);
+        }
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        line-height: rem(80px);
+        text-align: center;
+        margin-bottom: rem(20px);
+        .item {
+            flex: 1;
+            border: 1px solid #333;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .active {
+            background-color: #3d84f6;
+            color: #ffffff;
+        }
+    }
+    .main {
+        width: rem(750px);
+        position: relative;
+        text-align: center;
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: rem(80px);
+                height: rem(80px);
+                margin: rem(20px);
+            }
+        }
+        .desc {
+            line-height: rem(50px);
+            .color2 {
+                color: #ff0000;
+            }
+            .color {
+                color: #ff0000;
+                font-weight: bold;
+            }
+            .name {
+                font-size: rem(30px);
+                color: #3d84f6;
+            }
+        }
+        .timer {
+            margin: rem(30px) auto;
+            .time {
+                font-weight: bold;
+            }
+        }
+        .info {
+            line-height: rem(50px);
+            margin: rem(30px) 0 rem(30px) rem(200px);
+            text-align: left;
+            .copy {
+                line-height: rem(50px);
+                font-size: rem(24px);
+                color: #3d84f6;
+                text-decoration: underline;
+            }
+        }
+        .code {
+            img {
+                display: block;
+                margin: 0 auto;
+                border: 1px solid #333;
+                width: rem(260px);
+                height: rem(260px);
+                margin: rem(30px) auto;
+            }
+        }
+    }
+    .btn-box {
+        padding: rem(30px) 0;
+        text-align: center;
+        font-size: rem(28px);
+        .btn {
+            width: rem(480px);
+            line-height: remO(80px);
+            border-radius: rem(40px);
+            margin: 0 auto;
+            line-height: rem(80px);
+            color: #ffffff;
+            font-size: rem(26px);
+            background-color: #3d84f6;
+        }
+        .finish {
+            background-color: #F56C6C;
+        }
+    }
+    .uploadPage {
+        padding: rem(20px);
+        .title {
+            line-height: rem(100px);
+            font-size: rem(36px);
+            font-weight: bold;
+            color: #3d84f6;
+            span {
+                color: #ff0000;
+                font-size: rem(24px);
+            }
+        }
+        .inputtext {
+            padding: 0 rem(20px);
+            font-size: rem(28px);
+            border: 1px solid #868686;
+            border-radius: rem(30px);
+            margin-bottom: rem(20px);
+            input {
+                width: 100%;
+                height: rem(80px);
+                line-height: rem(80px);
+                font-size: rem(28px);
+            }
+        }
+        .memo{
+            padding: 0 rem(30px);
+            color: #3d84f6;
+            font-size: rem(30px);
+        }
+        .imgupload {
+            margin: rem(30px) auto;
+            text-align: center;
+            position: relative;
+            span {
+                display: block;
+                width: rem(260px);
+                height: rem(260px);
+                line-height: rem(260px);
+                border: rem(1px) dashed #868686;
+                margin: 0 auto;
+                font-size: rem(60px);
+                color: #868686;
+            }
+            img {
+                display: block;
+                width: rem(260px);
+                height: rem(260px);
+                margin: 0 auto;
+            }
+            #imageUploadForm {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: rem(260px);
+                height: rem(260px);
+                // opacity: 0;
+                input {
+                    display: block;
+                    width: rem(260px);
+                    height: rem(260px);
+                    margin: 0 auto;
+                    opacity: 0;
+                }
+            }
+        }
+        .btn {
+            width: 60%;
+            line-height: rem(80px);
+            border-radius: rem(80px);
+            text-align: center;
+            background-color: #3d84f6;
+            margin: 0 auto;
+            font-size: rem(30px);
+            color: #ffffff;
+        }
+        
+    }
+    .desc{
+        text-align: center;
+        color: #868686;
+        margin-bottom: rem(30px);
+    }
+    .van-dialog__content{
+        padding: rem(20px);
+        .memo{color: #3d84f6;}
+        img{
+            display: block;
+            margin: rem(20px) auto;
+        }
+    }
+}
+.chargePage{
+    .title{
+        line-height: rem(100px);
+        text-align: center;
+        font-weight: bold;
+    }
+    .item{
+        display: flex;
+        align-items: center;
+        img{
+            width: rem(60px);
+            height: rem(60px);
+            margin-right: rem(10px);
+        }
+    }
+    .btn {
+        width: 60%;
+        line-height: rem(80px);
+        border-radius: rem(80px);
+        text-align: center;
+        background-color: #3d84f6;
+        margin: rem(30px) auto;
+        font-size: rem(30px);
+        color: #ffffff;
+    }
+}

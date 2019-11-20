@@ -1,0 +1,403 @@
+html {
+  color: #000;
+  background: #fff;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%; }
+
+* {
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box; }
+
+html, body {
+  font-family: Helvetica;
+  width: 100%; }
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0; }
+
+input,
+select,
+textarea {
+  font-size: 100%; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+fieldset,
+img {
+  border: 0;
+  display: block; }
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+i {
+  font-style: normal;
+  font-weight: 500; }
+
+ol,
+ul {
+  list-style: none; }
+
+caption,
+th {
+  text-align: left; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: 500; }
+
+a:hover {
+  text-decoration: none; }
+
+a {
+  text-decoration: none; }
+
+input, button {
+  background: none;
+  border: 0 none; }
+
+.aheader {
+  height: 1.3333333333rem;
+  line-height: 1.3333333333rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-items: center;
+  background: #000;
+  padding: 0 0.2666666667rem; }
+  .aheader .back {
+    width: 0.6666666667rem;
+    height: 0.6666666667rem;
+    background: url(http://static.jesport.com/sly/images/icon-left.png) no-repeat;
+    background-size: 0.6666666667rem 0.6666666667rem; }
+  .aheader .about-title {
+    color: #fff;
+    font-size: 0.4533333333rem; }
+  .aheader .aheader-null {
+    width: 0.88rem; }
+  .aheader .loginalert, .aheader .loginclose {
+    line-height: 1.3333333333rem;
+    font-size: 0.4266666667rem;
+    color: #FFFFFF; }
+
+.logintitle {
+  height: 1.2666666667rem;
+  line-height: 1.2666666667rem;
+  text-align: center;
+  color: #999999;
+  font-size: 0.32rem; }
+
+.alert-msg {
+  z-index: 99;
+  text-align: center;
+  width: 9.2rem;
+  border-radius: 0.12rem;
+  padding-top: 0.4rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 3.3333333333rem;
+  margin: auto;
+  transition: opacity .3s,transform .4s;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  align-items: center; }
+  .alert-msg .title {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.4266666667rem; }
+  .alert-msg .alert-msg-content {
+    font-size: 0.3466666667rem;
+    line-height: 0.4666666667rem;
+    margin: 0.2666666667rem; }
+  .alert-msg .alert-msg-btn {
+    height: 0.9066666667rem;
+    background-color: #5FBFC1;
+    font-size: 0.3733333333rem;
+    color: #FFFFFF;
+    line-height: 0.9066666667rem; }
+
+.headertitle {
+  display: flex;
+  width: 100%;
+  max-width: 1500px;
+  height: 1.0666666667rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.2666666667rem;
+  font-size: 0.4266666667rem;
+  color: #FFFFFF;
+  background-color: #FF6600;
+  z-index: 99;
+  text-align: center; }
+  .headertitle .return {
+    width: 1.2rem;
+    font-size: 0.3733333333rem;
+    color: #FFFFFF;
+    display: flex;
+    line-height: 0.4266666667rem; }
+    .headertitle .return img {
+      width: 0.4266666667rem;
+      height: 0.4266666667rem; }
+  .headertitle .title {
+    flex: 1; }
+  .headertitle .icon-home {
+    display: block;
+    z-index: 99;
+    width: 0.4266666667rem;
+    margin-left: 0.7733333333rem;
+    height: 0.4266666667rem;
+    background-image: url("http://static.jesport.com/sly/images/common/icon-home.png");
+    background-repeat: no-repeat;
+    background-size: 0.4266666667rem 0.4266666667rem; }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%; }
+
+#app {
+  width: 10rem;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 0.3733333333rem; }
+  #app .header {
+    background-color: #3d84f6;
+    padding: 0 0.2666666667rem;
+    height: 1.0666666667rem;
+    line-height: 1.0666666667rem;
+    display: flex;
+    align-items: center;
+    color: #ffffff; }
+    #app .header .icon {
+      background-image: url("../image/back.png");
+      width: 0.2933333333rem;
+      height: 0.5333333333rem;
+      background-size: 0.2933333333rem 0.5333333333rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-right: 0.1333333333rem; }
+  #app .nav {
+    display: flex;
+    align-items: center;
+    line-height: 1.0666666667rem;
+    text-align: center;
+    margin-bottom: 0.2666666667rem; }
+    #app .nav .item {
+      flex: 1;
+      border: 1px solid #333;
+      background-color: #ffffff;
+      color: #333; }
+    #app .nav .active {
+      background-color: #3d84f6;
+      color: #ffffff; }
+  #app .main {
+    width: 10rem;
+    position: relative;
+    text-align: center; }
+    #app .main .title {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #app .main .title img {
+        width: 1.0666666667rem;
+        height: 1.0666666667rem;
+        margin: 0.2666666667rem; }
+    #app .main .desc {
+      line-height: 0.6666666667rem; }
+      #app .main .desc .color2 {
+        color: #ff0000; }
+      #app .main .desc .color {
+        color: #ff0000;
+        font-weight: bold; }
+      #app .main .desc .name {
+        font-size: 0.4rem;
+        color: #3d84f6; }
+    #app .main .timer {
+      margin: 0.4rem auto; }
+      #app .main .timer .time {
+        font-weight: bold; }
+    #app .main .info {
+      line-height: 0.6666666667rem;
+      margin: 0.4rem 0 0.4rem 2.6666666667rem;
+      text-align: left; }
+      #app .main .info .copy {
+        line-height: 0.6666666667rem;
+        font-size: 0.32rem;
+        color: #3d84f6;
+        text-decoration: underline; }
+    #app .main .code img {
+      display: block;
+      margin: 0 auto;
+      border: 1px solid #333;
+      width: 3.4666666667rem;
+      height: 3.4666666667rem;
+      margin: 0.4rem auto; }
+  #app .btn-box {
+    padding: 0.4rem 0;
+    text-align: center;
+    font-size: 0.3733333333rem; }
+    #app .btn-box .btn {
+      width: 6.4rem;
+      line-height: remO(80px);
+      border-radius: 0.5333333333rem;
+      margin: 0 auto;
+      line-height: 1.0666666667rem;
+      color: #ffffff;
+      font-size: 0.3466666667rem;
+      background-color: #3d84f6; }
+    #app .btn-box .finish {
+      background-color: #F56C6C; }
+  #app .uploadPage {
+    padding: 0.2666666667rem; }
+    #app .uploadPage .title {
+      line-height: 1.3333333333rem;
+      font-size: 0.48rem;
+      font-weight: bold;
+      color: #3d84f6; }
+      #app .uploadPage .title span {
+        color: #ff0000;
+        font-size: 0.32rem; }
+    #app .uploadPage .inputtext {
+      padding: 0 0.2666666667rem;
+      font-size: 0.3733333333rem;
+      border: 1px solid #868686;
+      border-radius: 0.4rem;
+      margin-bottom: 0.2666666667rem; }
+      #app .uploadPage .inputtext input {
+        width: 100%;
+        height: 1.0666666667rem;
+        line-height: 1.0666666667rem;
+        font-size: 0.3733333333rem; }
+    #app .uploadPage .memo {
+      padding: 0 0.4rem;
+      color: #3d84f6;
+      font-size: 0.4rem; }
+    #app .uploadPage .imgupload {
+      margin: 0.4rem auto;
+      text-align: center;
+      position: relative; }
+      #app .uploadPage .imgupload span {
+        display: block;
+        width: 3.4666666667rem;
+        height: 3.4666666667rem;
+        line-height: 3.4666666667rem;
+        border: 0.0133333333rem dashed #868686;
+        margin: 0 auto;
+        font-size: 0.8rem;
+        color: #868686; }
+      #app .uploadPage .imgupload img {
+        display: block;
+        width: 3.4666666667rem;
+        height: 3.4666666667rem;
+        margin: 0 auto; }
+      #app .uploadPage .imgupload #imageUploadForm {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 3.4666666667rem;
+        height: 3.4666666667rem; }
+        #app .uploadPage .imgupload #imageUploadForm input {
+          display: block;
+          width: 3.4666666667rem;
+          height: 3.4666666667rem;
+          margin: 0 auto;
+          opacity: 0; }
+    #app .uploadPage .btn {
+      width: 60%;
+      line-height: 1.0666666667rem;
+      border-radius: 1.0666666667rem;
+      text-align: center;
+      background-color: #3d84f6;
+      margin: 0 auto;
+      font-size: 0.4rem;
+      color: #ffffff; }
+  #app .desc {
+    text-align: center;
+    color: #868686;
+    margin-bottom: 0.4rem; }
+  #app .van-dialog__content {
+    padding: 0.2666666667rem; }
+    #app .van-dialog__content .memo {
+      color: #3d84f6; }
+    #app .van-dialog__content img {
+      display: block;
+      margin: 0.2666666667rem auto; }
+
+.chargePage .title {
+  line-height: 1.3333333333rem;
+  text-align: center;
+  font-weight: bold; }
+.chargePage .item {
+  display: flex;
+  align-items: center; }
+  .chargePage .item img {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.1333333333rem; }
+.chargePage .btn {
+  width: 60%;
+  line-height: 1.0666666667rem;
+  border-radius: 1.0666666667rem;
+  text-align: center;
+  background-color: #3d84f6;
+  margin: 0.4rem auto;
+  font-size: 0.4rem;
+  color: #ffffff; }
+
+/*# sourceMappingURL=style.css.map */

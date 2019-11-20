@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/flexible.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://res.zhifutongzhushou.com/css/loaders.css">
+	<link rel="apple-touch-icon" href="favicon.ico">
+	<!-- <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon"> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+	<link rel="stylesheet" href="https://res.zhifutongzhushou.com/css/style.css?v=201911191318">
+	<title>支付通助手</title>
+</head>
+
+<body>
+	<div id="app">
+		<a class="header" href='javascript:;' onclick="history.back(-1)">
+			<span class="icon" ></span>
+			<span>请使用{{typeCN[payInfo.payType]}}支付</span>
+		</a>
+		<!-- <div class="nav">
+			<div class="item" v-for="(item,index) in nav" :key="index" :class="{active:item.name==payInfo.name}" @click="navClick(item)">{{item.name}}</div>
+		</div> -->
+		<!-- wechat -->
+		<div class="main" v-if="payInfo.payType =='wx'">
+			<div class="title">
+				<img src="https://res.zhifutongzhushou.com/image/logo_wechat.png" alt="">
+				<span>微信支付</span>
+			</div>
+			<div class="desc">请支付 <span class="color num">￥{{payInfo.amount}}</span></div>
+			<div class="desc"><span class="color2">请完全按照金额支付，否则支付的订单无效！</span></div>
+			<div class="code"><img :src="cpOrderPayeeAccountVo.qrcode" alt=""></div>
+			<div class="desc"><span class="color2">请长按保存二维码后，使用微信识别后支付</span></div>
+			<div class="timer" v-if="!finish">支付剩余时间 <span class="time">{{minute}}:{{second}}</span></div>
+			<div class="desc">收款人昵称：<span class="name">{{cpOrderPayeeAccountVo.accountNo}}</span></div>
+		</div>
+		<!-- alipay -->
+		<div class="main" v-if="payInfo.payType == 'alipay'">
+			<div class="title">
+				<img src="https://res.zhifutongzhushou.com/image/logo_pay.png" alt="">
+				<span>支付宝支付</span>
+			</div>
+			<div class="desc">请支付 <span class="color num">￥{{payInfo.amount}}</span></div>
+			<div class="desc"><span class="color2">请完全按照金额支付，否则支付的订单无效！</span></div>
+			<div class="code"><img :src="cpOrderPayeeAccountVo.qrcode" alt=""></div>
+			<div class="desc"><span class="color2">请长按保存二维码后，使用支付宝识别后支付</span></div>
+			<div class="timer" v-if="!finish">支付剩余时间 <span class="time">{{minute}}:{{second}}</span></div>
+			<div class="desc">收款人姓名：<span class="name">{{cpOrderPayeeAccountVo.accountNo}}</span></div>
+			<div class="desc">收款人UID：<span class="name">{{cpOrderPayeeAccountVo.realname}}</span></div>
+		</div>
+		<!-- unionpay  -->
+		<div class="main" v-if="payInfo.payType == 'unionpay'">
+			<div class="title">
+				<img src="https://res.zhifutongzhushou.com/image/logo_unionpay.jpg" alt="">
+				<span>云闪付</span>
+			</div>
+			<div class="desc">请支付 <span class="color num">￥{{payInfo.amount}}</span></div>
+			<div class="desc"><span class="color2">请完全按照金额支付，否则支付的订单无效！</span></div>
+			<div class="code"><img :src="cpOrderPayeeAccountVo.qrcode" alt=""></div>
+			<div class="desc"><span class="color2">请长按保存二维码后，使用云闪付支付</span></div>
+			<div class="timer" v-if="!finish">支付剩余时间 <span class="time">{{minute}}:{{second}}</span></div>
+		</div>
+		<!-- bank -->
+		<div class="main" v-if="payInfo.payType == 'bank'">
+			<div class="title">
+				<img src="https://res.zhifutongzhushou.com/image/logo_bank.png" alt="">
+				<span>银行卡</span>
+			</div>
+			<div class="desc">请支付 <span class="color num">￥{{payInfo.amount}}</span></div>
+			<div class="desc"><span class="color2">请完全按照金额支付，否则支付的订单无效！</span></div>
+			<div class="info">
+				<div class="item">
+					<span class="name">收款人昵称: </span><span class="value">{{accountNo.realname}}</span>
+					<button id="btn" class="copy" :data-clipboard-text="payInfo.realname" @click="copy"> 点击复制 </button>
+				</div>
+				<div class="item">
+					<span class="name">收款账号: </span><span class="value">{{accountNo.accountNo}}</span>
+					<button id="btn" class="copy" :data-clipboard-text="payInfo.accountNo" @click="copy"> 点击复制 </button>
+				</div>
+				<div class="item">
+					<span class="name">开户地: </span><span class="value">{{accountNo.bankAddr}}</span>
+				</div>
+				<div class="item">
+					<span class="name">开户行: </span><span class="value">{{accountNo.bankName}}</span>
+				</div>
+			</div>
+
+			<div class="desc"><span class="color2">请将款项打款到以上银行卡中</span></div>
+			<div class="timer" v-if="!finish">支付剩余时间 <span class="time">{{minute}}:{{second}}</span></div>
+		</div>
+		<div class="btn-box">
+			<div class="btn" :class="{finish:finish}" @click="dopayment">{{finish?stateCN[payInfo.state]:'我已支付完成'}}</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/vue.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/vant.min.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/clipboard.min.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/md5.js"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/common.js?v=201911191318"></script>
+	<script type="text/javascript" src="https://res.zhifutongzhushou.com/js/index.js?v=201911191318"></script>
+
+</body>
+
+</html>

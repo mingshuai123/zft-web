@@ -1,0 +1,262 @@
+$bg:#74A4E9;
+$bd:#D7D7D7;
+$cc:#6C6C6C;
+$gs:#C6DDFF;
+$f0:#f0f0f0;
+$f9:#ff9f00;
+$orange:#1BD100;
+
+//btn
+@mixin gsbtn{
+  margin: 0 rem(30px) rem(10px);
+  border: 1px solid $bg;
+  height: rem(85px);
+  line-height: rem(85px);
+  text-align: center;
+  background: #fff;
+  border-radius: rem(10px);
+  @include dpr(28px);
+}
+@mixin prbtn{
+  margin: 0 rem(20px);
+  background: #f0f0f0;
+  height: rem(105px);
+  line-height: rem(105px);
+  @include wflex;
+  justify-content:center;
+}
+
+
+
+//icon
+
+@mixin icon-gold{
+  display: block;
+  width: rem(50px);
+  height: rem(50px);
+  @include profileBg;
+  background-position: left rem(-600px);
+}
+@mixin icon-back-box{
+  height: 100%;
+  width: rem(100px);
+  text-align: center;
+}
+@mixin icon-back{
+  display: inline-block;
+  width: rem(24px);
+  height: rem(40px);
+  @include indexBg;
+  background-position: right rem(-900px);
+  vertical-align: middle;
+}
+@mixin icon-addUser{
+  width: rem(40px);
+  height: rem(40px);
+  text-indent: -9999px;
+  @include bg();
+  background-position: left rem(-300px);
+}
+@mixin icon-zan{
+  display: block;
+  margin-right: rem(12px);
+  width: rem(40px);
+  height: rem(39px);
+  @include guessBg;
+  background-position: left rem(-750px);
+}
+@mixin icon-hei{
+  display: block;
+  margin-right: rem(12px);
+  width: rem(40px);
+  height: rem(41px);
+  @include guessBg;
+  background-position: left rem(-900px);
+}
+@mixin icon-double{
+  margin-left: rem(30px);
+  width: rem(80px);
+  height: rem(70px);
+  @include profileBg;
+  background-position: 0 rem(-900px);
+}
+@mixin icon-search{
+  display: inline-block;
+  width: rem(40px);
+  height: rem(40px);
+  @include indexBg;
+  vertical-align: middle;
+}
+
+
+@function rem( $a ){
+  @return  ( $a / 75px) * 1rem;
+}
+
+
+@mixin bg{
+  background: url(http://static.jesport.com/sly/images/bg.png) no-repeat;
+  background-size: rem(400px) rem(1000px);
+}
+@mixin myguessBg{
+  background: url(http://static.jesport.com/sly/images/myguess.png) no-repeat;
+  background-size: rem(500px) rem(450px);
+}
+@mixin indexBg{
+  background: url(http://static.jesport.com/sly/images/index.png) no-repeat;
+  background-size: rem(500px) rem(1500px);
+}
+@mixin guessBg{
+  background: url(http://static.jesport.com/sly/images/guess-bg1.png) no-repeat;
+  background-size: rem(500px) rem(1500px);
+}
+@mixin guessBg2{
+  background: url(http://static.jesport.com/sly/images/guess-bg2.png) no-repeat;
+  background-size: rem(500px) rem(1500px);
+}
+@mixin loginBg{
+  background: url(http://static.jesport.com/sly/images/login.png) no-repeat;
+  background-size: rem(1000px) rem(1500px);
+}
+@mixin profileBg{
+  background: url(http://static.jesport.com/sly/images/profile.png) no-repeat;
+  background-size: rem(500px) rem(1500px);
+}
+@mixin fishBg{
+  background: url(http://static.jesport.com/sly/images/fishing.png) no-repeat;
+  background-size: rem(1000px) rem(1500px);
+}
+@mixin shareBg{
+  background: url(http://static.jesport.com/sly/images/share.png) no-repeat;
+  background-size: rem(750px) rem(1000px);
+}
+
+@mixin cen{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+
+@mixin wflex{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: nowrap;
+  align-items:center;
+}
+@mixin hflex{
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: nowrap;
+  align-items:center;
+  flex-direction: column;
+}
+
+
+@mixin dpr($font-size){
+  font-size: rem($font-size);
+  /*
+     [data-dpr="2"] & {
+         font-size: rem($font-size) * 2;
+     }
+
+     [data-dpr="3"] & {
+         font-size: rem($font-size) * 3;
+     } */
+}
+@mixin syh{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+@mixin more{
+  display: none;
+  height: rem(100px);
+  line-height: rem(100px);
+  text-align: center;
+  color: #6c6c6c;
+  background: #f0f0f0;
+  @include dpr(24px);
+}
+
+
+@mixin hlmodal{
+  display: none;
+  @include cen;
+  background: #fff;
+  width: rem(400px);
+  z-index: 99999;
+  box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+@mixin hldl{
+  padding: 0 rem(35px);
+  @include wflex;
+  height: rem(130px);
+  border-bottom: 1px solid $bd;
+}
+
+
+@mixin modal-shadow{
+  box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+
+@mixin modal-btn{
+  width: rem(560px);
+  height: rem(80px);
+  line-height: rem(80px);
+  background: $f9;
+  color: #fff;
+  text-align: center;
+  border-radius: rem(10px);
+  margin-bottom: rem(10px);
+  @include dpr(28px);
+}
+
+
+
+
+@mixin modal{
+  @include modal-shadow;
+  @include cen;
+  display: none;
+  background: #fff;
+  z-index: 99999;
+  padding:0 rem(20px);
+}
+
+
+@mixin modal-h2{
+  font-weight: 600;
+  text-align: center;
+  @include dpr(28px);
+  margin-top: rem(32px);
+  margin-bottom: rem(90px);
+  color: $f9;
+}
+
+
+@mixin top{
+  @include wflex;
+  height: rem(88px);
+  line-height: rem(88px);
+  background: $bg;
+  text-align: center;
+}
+@mixin toph{
+  display: inline-block;
+  color: #fff;
+  @include dpr(34px);
+  font-weight: 700;
+}
+@mixin titlestyle{
+  text-align: center;
+  background-color: #E4007F;
+  color: #FFFFFF;
+}

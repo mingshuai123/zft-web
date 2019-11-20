@@ -1,0 +1,171 @@
+@charset "utf-8";
+//项目按钮
+@mixin btn{
+            width: rem(180px);
+            height: rem(60px);
+            background: #E4007F;
+            border-radius: rem(30px);
+            text-align: center;
+            line-height: rem(60px);
+            font-size: rem(34px);
+            color: #fff;
+            letter-spacing: 8px;
+}
+
+//计算rem
+@function rem( $a ){
+    @return  ( $a / 75px) * 1rem;
+}
+
+
+//垂直居中mixins
+@mixin cen{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+//常用flex
+@mixin wflex{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: nowrap;
+    align-items:stretch;
+}
+@mixin hflex{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: nowrap;
+    align-items:center;
+    flex-direction: column;
+}
+@mixin syh{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+//阴影盒子
+@mixin modal-shadow{
+     box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+@mixin im{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@mixin dja{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aheader{
+  height: rem(100px);
+  line-height: rem(100px);
+  @include wflex;
+  align-items: center;
+  background: #000;
+  padding:0 rem(20px);
+  .back{
+    width: rem(50px);
+    height: rem(50px);
+    background: url(http://static.jesport.com/sly/images/icon-left.png) no-repeat;
+    background-size: rem(50px) rem(50px);
+  }
+  .about-title{
+    color: #fff;
+    font-size: rem(34px);
+  }
+  .aheader-null{
+    width: rem(66px);
+  }
+  .loginalert,.loginclose{
+    line-height: rem(100px);
+    font-size: rem(32px);
+    color: #FFFFFF;
+  }
+}
+.logintitle{
+  height:rem(95px);
+  line-height:rem(95px);
+  text-align: center;
+  color: #999999;
+  font-size: rem(24px);
+}
+//提示弹框
+.alert-msg{
+  z-index: 99;
+  text-align: center;
+  width: rem(690px);
+  border-radius: rem(9px);
+  padding-top: rem(30px);
+  position: fixed;
+  left: 0;
+  right:0;
+  top: rem(250px);
+  margin:auto;
+  transition: opacity .3s,transform .4s;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  align-items: center;
+  .title{
+    height:rem(60px);
+    line-height: rem(60px);
+    font-size: rem(32px);
+  }
+  .alert-msg-content{
+    font-size: rem(26px);
+    line-height: rem(35px);
+    margin:rem(20px);
+  }
+  .alert-msg-btn{
+    height:rem(68px);
+    background-color: #5FBFC1;
+    font-size: rem(28px);
+    color: #FFFFFF;
+    line-height: rem(68px);
+  }
+}
+.headertitle{
+  display: flex;
+  width: 100%;
+  max-width: 1500px;
+  height:rem(80px);
+  justify-content: space-between;
+  align-items: center;
+  padding:0 rem(20px);
+  font-size: rem(32px);
+  color: #FFFFFF;
+  background-color: #FF6600;
+  z-index: 99;
+  text-align: center;
+  .return{
+    width: rem(90px);
+    font-size: rem(28px);
+    color: #FFFFFF;
+    display: flex;
+    line-height: rem(32px);
+    img{
+      width: rem(32px);
+      height:rem(32px);
+    }
+  }
+  .title{
+    flex: 1;
+  }
+  .icon-home{
+    display: block;
+    z-index: 99;
+    width: rem(32px);
+    margin-left: rem(58px);
+    height:rem(32px);
+    background-image: url("http://static.jesport.com/sly/images/common/icon-home.png");
+    background-repeat: no-repeat;
+    background-size: rem(32px) rem(32px);
+  }
+}
